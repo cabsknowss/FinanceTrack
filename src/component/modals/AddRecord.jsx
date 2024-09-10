@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import { Close } from "@mui/icons-material/";
 
 const AddRecord = (props) => {
-  const { showModal, setShowModal } = props;
-  const incomeCategories = ["", "Income", "Freelance", "Investment", "Others"];
+  const { showModal, setShowModal, userRecords, setUserRecords } = props;
+  const incomeCategories = ["", "Income", "Freelance", "Investment"];
   const expensesCategories = [
     "",
     "Transportation",
     "Restaurant",
     "Salary",
     "Contribution",
-    "Online Shopping",
-    "Others",
+    "Shopping",
   ];
 
   const [account, setAccount] = useState("Expenses");
@@ -28,12 +27,14 @@ const AddRecord = (props) => {
     }
 
     const data = {
+      account,
       category,
       description,
       amount: parseFloat(amount),
     };
 
-    console.log(data);
+    setUserRecords([...userRecords, data]);
+    setShowModal(!showModal);
 
     try {
       // API POST

@@ -5,23 +5,24 @@ import {
   Work,
   DirectionsBus,
   DeveloperMode,
+  Group,
+  ShowChart,
+  ShoppingCart,
 } from "@mui/icons-material";
-// import { data } from "../../data.jsx";
-import data from "../../data.json";
 
-const TrackRecord = () => {
-  const [userRecords, setUserRecords] = useState([]);
+const TrackRecord = (props) => {
+  const { userRecords } = props;
+
   const dataIcon = {
     Restaurant: <Fastfood />,
     Freelancing: <DeveloperMode />,
     Salary: <Work />,
     Transportation: <DirectionsBus />,
-    Contribution: <Money />,
+    Contribution: <Group />,
+    Income: <Money />,
+    Investment: <ShowChart />,
+    Shopping: <ShoppingCart />,
   };
-
-  useEffect(() => {
-    setUserRecords(data);
-  }, []);
 
   const computeBalance = (index) => {
     let amount = 0;

@@ -6,17 +6,16 @@ import {
   Fastfood,
   Money,
 } from "@mui/icons-material";
-import Header from "./sections/Header.jsx";
 import FinanceOverview from "./sections/FinanceOverview.jsx";
 import TrackRecord from "./sections/TrackRecord.jsx";
 
 const Dashboard = (props) => {
-  const { activeComponent } = props;
+  const { activeComponent, userRecords, setUserRecords } = props;
   const [showReminder, setShowReminder] = useState(true);
 
   return (
     <div className="dashboard">
-      <FinanceOverview />
+      <FinanceOverview userRecords={userRecords} />
 
       <div className="dashboard-chart | margin-bottom-600"></div>
 
@@ -63,7 +62,7 @@ const Dashboard = (props) => {
           </div>
         )}
       </div>
-      <TrackRecord />
+      <TrackRecord userRecords={userRecords} />
     </div>
   );
 };

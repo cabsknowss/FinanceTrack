@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Header from "./sections/Header";
+import React, { useState, useEffect } from "react";
 import FinanceOverview from "./sections/FinanceOverview";
 import TrackRecord from "./sections/TrackRecord";
 import { Add } from "@mui/icons-material";
 import AddRecord from "./modals/AddRecord";
 
-const Records = () => {
-  const [showReminder, setShowReminder] = useState(true);
+const Records = (props) => {
+  const { userRecords, setUserRecords } = props;
+
   const [showModal, setShowModal] = useState(false);
 
   const handleAddIncome = () => {
@@ -14,8 +14,8 @@ const Records = () => {
   };
   return (
     <div className="records">
-      <FinanceOverview />
-      <TrackRecord />
+      <FinanceOverview userRecords={userRecords} />
+      <TrackRecord userRecords={userRecords} />
 
       <div className="add-record" onClick={() => handleAddIncome()}>
         <Add style={{ fontSize: "30px" }} />
@@ -23,7 +23,12 @@ const Records = () => {
       </div>
 
       {showModal && (
-        <AddRecord showModal={showModal} setShowModal={setShowModal} />
+        <AddRecord
+          showModal={showModal}
+          setShowModal={setShowModal}
+          userRecords={userRecords}
+          setUserRecords={setUserRecords}
+        />
       )}
     </div>
   );

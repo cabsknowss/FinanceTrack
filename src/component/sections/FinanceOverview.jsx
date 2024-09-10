@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Wallet, CreditCard, CreditCardOff } from "@mui/icons-material";
-import data from "../../data.json";
 
-const FinanceOverview = () => {
-  const [userRecords, setUserRecords] = useState([]);
-
-  useEffect(() => {
-    setUserRecords(data);
-    console.log(data.length);
-  });
+const FinanceOverview = (props) => {
+  const { userRecords } = props;
 
   const computeBalance = () => {
     let balance = 0;
