@@ -27,7 +27,10 @@ const Sidebar = (props) => {
   return (
     <div className="sidebar">
       <div>
-        <div className="sidebar-header">
+        <div
+          onClick={() => window.location.reload(false)}
+          className="sidebar-header"
+        >
           <img src={logo} alt="logo" width="70px" />
           <h2 className=" | fw-semi-bold fs-500 opacity-800">FinanceTrack</h2>
         </div>

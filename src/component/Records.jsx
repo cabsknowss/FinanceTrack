@@ -15,12 +15,11 @@ const Records = (props) => {
   return (
     <div className="records">
       <FinanceOverview userRecords={userRecords} />
-      <TrackRecord userRecords={userRecords} />
-
       <div className="add-record" onClick={() => handleAddIncome()}>
         <Add style={{ fontSize: "30px" }} />
         <h2>Add Income/Expenditures</h2>
       </div>
+      <TrackRecord userRecords={userRecords} />
 
       {showModal && (
         <AddRecord

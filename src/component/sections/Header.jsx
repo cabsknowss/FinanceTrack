@@ -5,20 +5,16 @@ import axios from "axios";
 const Header = (props) => {
   const { activeComponent } = props;
 
-  const [dateClick, setDateClick] = useState(false);
-  const [settingsClick, setSettingsClick] = useState(false);
-
-  const [dateRange, setDateRange] = useState("");
-
   const handleRefresh = async () => {
-    console.log("Clicked Refresh");
+    window.location.reload(false);
+  };
 
-    try {
-      const response = await axios.get("http://localhost:3000/");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
+  const handleDatePicker = () => {
+    console.log("Date Range Picker");
+  };
+
+  const handleMoreSettings = () => {
+    console.log("More Settings");
   };
 
   return (
@@ -28,13 +24,7 @@ const Header = (props) => {
           {activeComponent}
         </h1>
         <div className="content-header__settings">
-          <div
-            onClick={() => {
-              setDateClick(!dateClick);
-              console.log(dateClick);
-            }}
-            className="content-header__date"
-          >
+          <div onClick={handleDatePicker} className="content-header__date">
             <i>
               <EditCalendar />
             </i>
@@ -46,13 +36,7 @@ const Header = (props) => {
           >
             Refresh
           </div>
-          <div
-            onClick={() => {
-              setSettingsClick(!settingsClick);
-              console.log(settingsClick);
-            }}
-            className="content-header__more"
-          >
+          <div onClick={handleMoreSettings} className="content-header__more">
             <MoreVert />
           </div>
         </div>

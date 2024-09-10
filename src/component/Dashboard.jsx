@@ -42,20 +42,22 @@ const Dashboard = (props) => {
                   <h3>1</h3>
                 </div>
                 <div>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Consectetur, minima voluptas ipsa consequuntur harum placeat
-                    delectus dolore! Expedita, quasi doloremque?
-                  </p>
+                  <p>Invest in yourself</p>
                 </div>
               </li>
               <li className="dashboard-reminder-text">
                 <div>
                   <h3>2</h3>
                 </div>
+                <p>Buy your needs and think twice on your wants</p>
+              </li>
+              <li className="dashboard-reminder-text">
+                <div>
+                  <h3>3</h3>
+                </div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Saepe, doloremque.
+                  Financial journaling is the best way to reflect on your
+                  financial management
                 </p>
               </li>
             </ol>

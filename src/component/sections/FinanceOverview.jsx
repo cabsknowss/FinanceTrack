@@ -14,6 +14,15 @@ const FinanceOverview = (props) => {
     return balance;
   };
 
+  const computeIncome = () => {
+    let income = 0;
+    for (let i = 0; i < userRecords.length; i++) {
+      userRecords[i].account === "Income" &&
+        (income = income + userRecords[i].amount);
+    }
+    return income;
+  };
+
   const computeExpenses = () => {
     let expenses = 0;
     for (let i = 0; i < userRecords.length; i++) {
@@ -29,7 +38,7 @@ const FinanceOverview = (props) => {
         <div>
           <div>
             <p className=" | fs-200 fw-semi-bold text-neutral-700">Balance</p>
-            <h2 className=" | fs-500 fw-bold text-success-400">
+            <h2 className=" | fs-500 fw-bold text-neutral-900">
               &#8369; {computeBalance()}
               <span className="fs-200 text-success-400 fw-bold"></span>
             </h2>
@@ -43,7 +52,9 @@ const FinanceOverview = (props) => {
             <p className=" | fs-200 fw-semi-bold text-neutral-700">
               Monthly Income
             </p>
-            <h2 className=" | fs-500 fw-bold">&#8369; {computeBalance()}</h2>
+            <h2 className=" | fs-500 fw-bold text-success-400">
+              &#8369; {computeIncome()}
+            </h2>
           </div>
           <div className="financial-overview__icon">
             <CreditCard />
