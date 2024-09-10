@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Wallet, CreditCard, CreditCardOff } from "@mui/icons-material";
+import data from "../../data.json";
 
 const FinanceOverview = () => {
-  const [balance, setBalance] = useState(null);
-  const [income, setIncome] = useState(null);
-  const [expenses, setExpenses] = useState(null);
+  const [userRecords, setUserRecords] = useState([]);
 
   useEffect(() => {
-    setBalance(24700);
-    setIncome(15000);
-    setExpenses(250);
+    setUserRecords(data);
+    console.log(data.length);
   });
+
+  const computeBalance = () => {
+    let balance = 0;
+    for (let i = 0; i < userRecords.length; i++) {
+      userRecords[i].account === "Income"
+        ? (balance = balance + userRecords[i].amount)
+        : (balance = balance - userRecords[i].amount);
+    }
+    return balance;
+  };
+
+  const computeExpenses = () => {
+    let expenses = 0;
+    for (let i = 0; i < userRecords.length; i++) {
+      userRecords[i].account === "Expenses" &&
+        (expenses = expenses + userRecords[i].amount);
+    }
+    return expenses;
+  };
 
   return (
     <>
@@ -18,9 +35,9 @@ const FinanceOverview = () => {
         <div>
           <div>
             <p className=" | fs-200 fw-semi-bold text-neutral-700">Balance</p>
-            <h2 className=" | fs-500 fw-bold">
-              &#8369; {balance}
-              <span className="fs-200 text-success-400 fw-bold">+23%</span>
+            <h2 className=" | fs-500 fw-bold text-success-400">
+              &#8369; {computeBalance()}
+              <span className="fs-200 text-success-400 fw-bold"></span>
             </h2>
           </div>
           <div className="financial-overview__icon">
@@ -32,7 +49,7 @@ const FinanceOverview = () => {
             <p className=" | fs-200 fw-semi-bold text-neutral-700">
               Monthly Income
             </p>
-            <h2 className=" | fs-500 fw-bold">&#8369; {income}</h2>
+            <h2 className=" | fs-500 fw-bold">&#8369; {computeBalance()}</h2>
           </div>
           <div className="financial-overview__icon">
             <CreditCard />
@@ -43,7 +60,9 @@ const FinanceOverview = () => {
             <p className=" | fs-200 fw-semi-bold text-neutral-700">
               Monthly Expense
             </p>
-            <h2 className=" | fs-500 fw-bold">&#8369; {expenses}</h2>
+            <h2 className=" | fs-500 fw-bold text-error-400">
+              &#8369; {computeExpenses()}
+            </h2>
           </div>
           <div className="financial-overview__icon">
             <CreditCardOff />
