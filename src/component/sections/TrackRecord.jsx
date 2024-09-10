@@ -1,58 +1,74 @@
-import React, { useState } from "react";
-import { DirectionsBus, Fastfood, Money } from "@mui/icons-material";
+import React, { useEffect, useState } from "react";
+import {
+  Fastfood,
+  Money,
+  Work,
+  DirectionsBus,
+  DeveloperMode,
+} from "@mui/icons-material";
+// import { data } from "../../data.jsx";
+import data from "../../data.json";
 
 const TrackRecord = () => {
+  const [userRecords, setUserRecords] = useState([]);
+  const dataIcon = {
+    Restaurant: <Fastfood />,
+    Freelancing: <DeveloperMode />,
+    Salary: <Work />,
+    Transportation: <DirectionsBus />,
+    Contribution: <Money />,
+  };
+
+  useEffect(() => {
+    setUserRecords(data);
+  }, []);
+
+  const computeBalance = (index) => {
+    let amount = 0;
+    if (index === 0) {
+      return userRecords[index].amount;
+    }
+
+    for (let i = 0; i <= index; i++) {
+      userRecords[i].account === "Income"
+        ? (amount = amount + userRecords[i].amount)
+        : (amount = amount - userRecords[i].amount);
+    }
+    return amount;
+  };
   return (
     <>
-      <div className="track-records ">
+      <div className="track-records">
         <h2 className="fw-semi-bold fs-500 padding-bottom-500">Your Account</h2>
-        <div className="track-record-list | margin-bottom-400">
-          <div className="track-record-list__details">
-            <i className="flex-center bg-neutral-400 padding-300 max-radius">
-              <Fastfood />
-            </i>
-            <div>
-              <h2 className="fw-bold">Mcdonalds</h2>
-              <p className="fs-200 text-neutral-700">Food</p>
-            </div>
-          </div>
-          <div className="track-record-list__money">
-            <h3 className="fw-bold text-error-400">-&#8369;200</h3>
-            <p className="fs-200 text-neutral-700">&#8369;24,700</p>
-          </div>
-        </div>
 
-        <div className="track-record-list | margin-bottom-400">
-          <div className="track-record-list__details">
-            <i className="flex-center bg-neutral-400 padding-300 max-radius">
-              <DirectionsBus />
-            </i>
-            <div>
-              <h2 className="fw-bold">Bus to Work</h2>
-              <p className="fs-200 text-neutral-700">Transportation</p>
+        {userRecords.map((rec, index) => (
+          <div key={index} className="track-record-list | margin-bottom-400">
+            <div className="track-record-list__details">
+              <i className="flex-center bg-neutral-400 padding-300 max-radius">
+                {dataIcon[rec.category]}
+              </i>
+              <div>
+                <h2 className="fw-bold">{rec.description}</h2>
+                <p className="fs-200 text-neutral-700">{rec.category}</p>
+              </div>
+            </div>
+            <div className="track-record-list__money">
+              <h3
+                className={`fw-bold ${
+                  rec.account === "Expenses"
+                    ? "text-error-400"
+                    : "text-success-400"
+                }`}
+              >
+                {`${rec.account === "Expenses" ? "-" : ""}`}&#8369;
+                {rec.amount}
+              </h3>
+              <p className="fs-200 text-neutral-700">
+                &#8369;{computeBalance(index)}
+              </p>
             </div>
           </div>
-          <div className="track-record-list__money">
-            <h3 className="fw-bold text-error-400">-&#8369;50</h3>
-            <p className="fs-200 text-neutral-700">&#8369;24,900</p>
-          </div>
-        </div>
-
-        <div className="track-record-list | margin-bottom-400">
-          <div className="track-record-list__details">
-            <i className="flex-center bg-neutral-400 padding-300 max-radius">
-              <Money />
-            </i>
-            <div>
-              <h2 className="fw-bold">Work Salary</h2>
-              <p className="fs-200 text-neutral-700">Income</p>
-            </div>
-          </div>
-          <div className="track-record-list__money">
-            <h3 className="fw-bold text-success-400">&#8369;24,950</h3>
-            <p className="fs-200 text-neutral-700">&#8369;24,950</p>
-          </div>
-        </div>
+        ))}
       </div>
     </>
   );

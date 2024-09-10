@@ -8,7 +8,7 @@ const AddRecord = (props) => {
     "",
     "Transportation",
     "Restaurant",
-    "Grocery",
+    "Salary",
     "Contribution",
     "Online Shopping",
     "Others",
@@ -17,12 +17,12 @@ const AddRecord = (props) => {
   const [account, setAccount] = useState("Expenses");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [cost, setCost] = useState("");
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!category || !description || !cost) {
+    if (!category || !description || !amount) {
       console.log("Incomplete inputs");
       return;
     }
@@ -30,7 +30,7 @@ const AddRecord = (props) => {
     const data = {
       category,
       description,
-      cost: parseFloat(cost),
+      amount: parseFloat(amount),
     };
 
     console.log(data);
@@ -56,7 +56,7 @@ const AddRecord = (props) => {
   const clearInputs = () => {
     setCategory("");
     setDescription("");
-    setCost("");
+    setAmount("");
   };
 
   return (
@@ -129,10 +129,10 @@ const AddRecord = (props) => {
             />
           </div>
           <div>
-            <label htmlFor="cost">Cost</label>
+            <label htmlFor="amount">Amount</label>
             <input
-              value={cost}
-              onChange={(e) => setCost(e.target.value)}
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
               type="number"
             />
           </div>
