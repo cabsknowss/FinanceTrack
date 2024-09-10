@@ -1,0 +1,25 @@
+.financial-overview {
+  display: grid;
+  gap: $size-400;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 4rem;
+  grid-template-areas: "balance income expenses";
+}
+
+.financial-overview > * {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem;
+  background-color: $clr-neutral-200;
+  border-radius: $size-400;
+}
+
+.financial-overview__icon {
+  display: flex;
+  background-color: $clr-accent-400;
+  color: $clr-neutral-100;
+  padding: 0.5rem;
+  border-radius: $size-200;
+}

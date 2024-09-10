@@ -1,0 +1,31 @@
+.app {
+  $sidebar-width: 256px;
+  $content-width: 1fr;
+
+  height: 100vh;
+  display: grid;
+  grid-auto-columns: $sidebar-width $content-width;
+  grid-template-areas: "sidebar content";
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  grid-area: sidebar;
+  background-color: $clr-secondary-400;
+  padding: 8px 16px 24px;
+}
+
+.content-wrapper {
+  grid-area: content;
+  overflow-y: auto;
+}
+
+.content {
+  background-color: $clr-primary-400;
+
+  max-width: 768px;
+  margin-inline: auto;
+}

@@ -1,0 +1,23 @@
+.track-record-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+}
+
+.track-record-list:hover {
+  border: 2px solid $clr-neutral-400;
+}
+
+.track-record-list__details {
+  display: flex;
+  gap: $size-400;
+  align-items: center;
+}
+
+.track-record-list__money {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

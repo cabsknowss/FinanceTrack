@@ -1,0 +1,52 @@
+.dashboard-chart {
+  border: 3px solid clr-neutral-400;
+  border-radius: size-200;
+  width: 100%;
+  height: 400px;
+
+  /* Placeholder only */
+  background-image: url("../images/dashboard-chart-placeholder.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.dashboard-reminder {
+  background-color: $clr-accent2-400;
+  width: 100%;
+  padding: 1rem;
+}
+
+.dashboard-reminder-title {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: $size-300;
+}
+
+.dashboard-reminder-title__show {
+  display: flex;
+}
+
+.dashboard-reminder-details {
+  display: flex;
+  flex-direction: column;
+  gap: $size-400;
+}
+
+.dashboard-reminder-text {
+  display: flex;
+  align-items: center;
+  gap: $size-400;
+}
+
+.dashboard-reminder-text > :nth-child(1) {
+  flex: 0 0 30px;
+  height: 30px;
+  padding: $size-100;
+  border: 2px solid black;
+  border-radius: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

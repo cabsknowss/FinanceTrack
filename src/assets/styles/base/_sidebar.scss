@@ -1,0 +1,37 @@
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: $size-400;
+}
+
+.sidebar-navlist {
+  display: flex;
+  gap: $size-500;
+  align-items: center;
+
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: $size-200;
+  cursor: pointer;
+}
+
+.sidebar-navlist div {
+  color: $clr-neutral-700;
+}
+
+.sidebar-navlist__active {
+  background-color: $clr-accent-200;
+}
+
+.sidebar-navlist__active h2 {
+  color: $clr-accent-700;
+  font-weight: $fw-bold;
+}
+
+.sidebar-navlist__active div {
+  color: $clr-accent-700;
+}
+
+.sidebar-footer {
+  display: flex;
+}

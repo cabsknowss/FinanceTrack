@@ -8,7 +8,7 @@ const FinanceOverview = () => {
 
   useEffect(() => {
     setBalance(24700);
-    setIncome(24950);
+    setIncome(15000);
     setExpenses(250);
   });
 

@@ -1,0 +1,22 @@
+
+// base
+@import "./base/base.scss";
+@import "./base/utility.scss";
+@import "./base/layout.scss";
+@import "./base/sidebar.scss";
+
+// pages
+@import "./pages/dashboard.scss";
+@import "./pages/record.scss";
+@import "./pages/chart.scss";
+@import "./pages/reflect.scss";
+@import "./pages/settings.scss";
+
+// modals
+@import "./modals/addrecord.scss";
+
+// components
+@import "./components/financeoverview.scss";
+@import "./components/header.scss";
+@import "./components/trackrecord.scss";
+

@@ -1,0 +1,60 @@
+.add-record {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+
+  background-color: $clr-accent-400;
+  color: $clr-neutral-100;
+  padding: $size-200;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.add-record:hover {
+  /* opacity: 0.8; */
+  background-color: $clr-accent-700;
+}
+
+.addrecord-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: hsla(0, 0%, 0%, 0.5);
+  backdrop-filter: blur(8px);
+}
+
+.addrecord-modal__container {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 1rem;
+  padding: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.addrecord-modal__close {
+  display: flex;
+  padding: 0.5rem;
+}
+
+.addrecord-modal__buttons {
+  background-color: blue;
+  align-self: center;
+  padding: 1.5rem 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
