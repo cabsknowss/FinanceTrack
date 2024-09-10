@@ -1,40 +1,145 @@
-import React from "react";
+import React, { useState } from "react";
 import { Close } from "@mui/icons-material/";
 
 const AddRecord = (props) => {
   const { showModal, setShowModal } = props;
+  const incomeCategories = ["", "Income", "Freelance", "Investment", "Others"];
+  const expensesCategories = [
+    "",
+    "Transportation",
+    "Restaurant",
+    "Grocery",
+    "Contribution",
+    "Online Shopping",
+    "Others",
+  ];
 
-  const handleSubmit = (e) => {
+  const [account, setAccount] = useState("Expenses");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [cost, setCost] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submit");
+
+    if (!category || !description || !cost) {
+      console.log("Incomplete inputs");
+      return;
+    }
+
+    const data = {
+      category,
+      description,
+      cost: parseFloat(cost),
+    };
+
+    console.log(data);
+
+    try {
+      // API POST
+      // const response = await fetch("", {
+      //   method: POST,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+      // if (!response.ok) {
+      //   throw new Error(`ERROR! Status: ???`);
+      // }
+      // const result = await response.json();
+    } catch (error) {
+      // console.log(error.message);
+    }
   };
+
+  const clearInputs = () => {
+    setCategory("");
+    setDescription("");
+    setCost("");
+  };
+
   return (
     <div className="addrecord-modal">
       <div className="addrecord-modal__container">
-        <h2 className="align-self-center fs-primary-heading fw-bold">
-          Add Record
-        </h2>
+        <h2 className="addrecord-title">Add Record</h2>
         <div className="addrecord-modal__buttons">
-          <p>Income</p>
-          <p>Expenses</p>
+          <button
+            onClick={() => {
+              setAccount("Income");
+              clearInputs();
+            }}
+            className={`${account === "Income" && "active"}`}
+          >
+            Income
+          </button>
+          <button
+            onClick={() => {
+              setAccount("Expenses");
+              clearInputs();
+            }}
+            className={`${account === "Expenses" && "active"}`}
+          >
+            Expenses
+          </button>
         </div>
-        <div>
-          <form action="" onSubmit={(e) => handleSubmit(e)}>
+        <form
+          className="addrecord-forms"
+          action=""
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          {account === "Expenses" ? (
             <div>
-              <div>
-                <label htmlFor="">Item</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label htmlFor="">Item</label>
-                <input type="text" />
-              </div>
+              <label htmlFor="category">Category</label>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                name="category"
+                id="category"
+              >
+                {expensesCategories.map((cat, index) => (
+                  <option key={index} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
             </div>
+          ) : (
             <div>
-              <button>Submit</button>
+              <label htmlFor="category">Category</label>
+              <select
+                onChange={(e) => setCategory(e.target.value)}
+                name="category"
+                id="category"
+                value={category}
+              >
+                {incomeCategories.map((cat, index) => (
+                  <option key={index} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
             </div>
-          </form>
-        </div>
+          )}
+          <div>
+            <label htmlFor="description">Description</label>
+            <input
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              type="text"
+            />
+          </div>
+          <div>
+            <label htmlFor="cost">Cost</label>
+            <input
+              value={cost}
+              onChange={(e) => setCost(e.target.value)}
+              type="number"
+            />
+          </div>
+          <div className="addrecord-submit">
+            <button className="addrecord-submit__btn">Submit</button>
+          </div>
+        </form>
 
         <Close
           style={{
